@@ -18,5 +18,6 @@ export const MESSAGES = {
 
   FOOTER_RIGHTS: "All rights reserved.",
   FOOTER_GITHUB_LABEL: "GitHub 프로필",
+  FOOTER_LINKEDIN_LABEL: "LinkedIn 프로필",
   FOOTER_EMAIL_LABEL: "이메일 보내기",
 } as const;
