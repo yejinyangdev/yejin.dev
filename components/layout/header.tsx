@@ -8,8 +8,8 @@ import { SITE_NAME } from "@/constants";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-10 bg-white dark:bg-neutral-950">
-      <div className="max-w-5xl mx-auto p-4">
+    <header className="sticky top-0 z-10 w-full min-w-0 bg-white dark:bg-neutral-950">
+      <div className="mx-auto w-full min-w-0 max-w-7xl px-5 py-4 sm:px-8">
         <nav className="flex items-center justify-between">
           <Link
             href={HOME_PATH}

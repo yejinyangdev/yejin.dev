@@ -6,8 +6,8 @@ import {
   getPostBySlug,
   getPostSlugs,
   getAdjacentPosts,
-  type Post,
 } from "@/lib/posts";
+import type { Post } from "@/domain/post";
 import { formatDateShort } from "@/lib/utils";
 import { renderMarkdown } from "@/lib/mdx";
 import { MDXContent } from "@/components/mdx-content";

@@ -1,5 +1,5 @@
 import { AUTHOR_NAME, SITE_URL, SITE_NAME } from "@/constants/site";
-import type { Post } from "@/lib/posts";
+import type { Post } from "@/domain/post";
 
 export function PostJsonLd({ post }: { post: Post }) {
   const url = `${SITE_URL}/posts/${post.slug}`;

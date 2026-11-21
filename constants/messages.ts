@@ -4,6 +4,14 @@ export const MESSAGES = {
   HEADER_BRAND_SUFFIX: "(dev)",
 
   EMPTY_POSTS: "작성된 포스트가 없습니다.",
+  POST_FILTER_ALL: "All",
+  POSTS_TITLE: "Latest posts",
+  POST_FILTER_LABEL: "글 태그 필터",
+  EMPTY_FILTERED_POSTS: "이 태그에 해당하는 글이 없습니다.",
+
+  HOME_INTRO_TITLE: "안녕하세요, 프론트엔드 개발자 예진입니다.",
+  HOME_INTRO_DESCRIPTION:
+    "제품을 만들며 마주한 문제와 해결 과정을 기록합니다.",
 
   TOC_TITLE: "목차",
   TOC_OPEN: "목차 열기",

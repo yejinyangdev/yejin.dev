@@ -1,6 +1,6 @@
 import { getPosts } from "@/lib/posts";
 import { MESSAGES } from "@/constants/messages";
-import { PostList } from "@/components/posts/post-list";
+import { PostBrowser } from "@/components/posts/post-browser";
 
 export default async function Home() {
   const posts = await getPosts();
@@ -12,25 +12,28 @@ export default async function Home() {
     category: p.category,
     thumbnail: p.thumbnail,
     description: p.description,
+    tags: p.tags,
   }));
 
   return (
     <>
-      <main className="max-w-5xl mx-auto px-4 py-9 flex flex-col gap-4 sm:gap-9">
-        <h1 className="text-2xl sm:text-3xl tracking-tight font-bold text-neutral-700 dark:text-neutral-300">
-          Posts
-        </h1>
-
-        <div>
-          {posts.length === 0 ? (
-            <p className="text-neutral-500 dark:text-neutral-400">
-              {MESSAGES.EMPTY_POSTS}
-            </p>
-          ) : (
-            <PostList posts={listItems} />
-          )}
-        </div>
-      </main>
+      <div className="mx-auto w-full min-w-0 max-w-7xl px-5 pb-16 pt-10 sm:px-8 sm:pb-24 sm:pt-16">
+        <section
+          aria-labelledby="intro-heading"
+          className="mb-10 sm:mb-16 lg:ml-56"
+        >
+          <h1
+            id="intro-heading"
+            className="max-w-2xl break-keep text-balance text-2xl font-medium leading-snug tracking-tight text-neutral-900 dark:text-neutral-100 sm:text-3xl"
+          >
+            {MESSAGES.HOME_INTRO_TITLE}
+          </h1>
+          <p className="mt-3 break-words text-base leading-relaxed text-neutral-500 dark:text-neutral-400 sm:break-keep">
+            {MESSAGES.HOME_INTRO_DESCRIPTION}
+          </p>
+        </section>
+        <PostBrowser posts={listItems} />
+      </div>
     </>
   );
 }

@@ -8,25 +8,7 @@ import {
   COVER_FILE_PREFIX,
 } from "@/constants/content";
 import { POSTS_PATH_PREFIX } from "@/constants/paths";
-
-export interface PostMetadata {
-  title: string;
-  date: string;
-  description?: string;
-  category?: string;
-  cover?: string;
-}
-
-export interface Post {
-  slug: string;
-  metadata: PostMetadata;
-  content: string;
-  title: string;
-  date: string;
-  description?: string;
-  category?: string;
-  thumbnail?: string;
-}
+import type { Post, PostMetadata } from "@/domain/post";
 
 export async function getPostSlugs(): Promise<string[]> {
   try {
@@ -58,12 +40,12 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 
     return {
       slug,
-      metadata: meta,
       content,
       title: meta.title || "",
       date: meta.date || "",
       description: meta.description,
       category: meta.category,
+      tags: meta.tags ?? [],
       thumbnail: thumbnail || undefined,
     };
   } catch {

@@ -5,52 +5,51 @@ import Image from "next/image";
 import { formatDateShort } from "@/lib/utils";
 import { getPostPath } from "@/constants/paths";
 import { DEFAULT_CATEGORY } from "@/constants/site";
-import { Post } from "@/lib/posts";
-
-type PostListItem = Omit<Post, "content" | "metadata">;
+import type { PostSummary } from "@/domain/post";
 
 interface PostListProps {
-  posts: PostListItem[];
+  posts: readonly PostSummary[];
 }
 
 export function PostList({ posts }: PostListProps) {
   return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <ul className="grid w-full min-w-0 grid-cols-1 gap-y-7 sm:gap-y-9 lg:gap-y-10">
       {posts.map((post) => (
-        <li key={post.slug}>
+        <li key={post.slug} className="min-w-0">
           <Link
             href={getPostPath(post.slug)}
-            className="flex flex-col h-full overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-neutral-300 dark:hover:border-neutral-700 hover:shadow-md transition-all duration-300"
+            className="group flex h-full w-full min-w-0 flex-col items-start overflow-hidden rounded-2xl border border-neutral-200 bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 dark:border-neutral-800 dark:bg-neutral-900 sm:flex-row sm:items-center sm:gap-6 sm:overflow-visible sm:rounded-md sm:border-0 sm:bg-transparent dark:sm:bg-transparent"
           >
-            {post.thumbnail ? (
-              <div className="relative w-full aspect-video overflow-hidden bg-neutral-100 dark:bg-neutral-800 shrink-0">
+            <div className="relative aspect-video w-full shrink-0 overflow-hidden bg-neutral-100 dark:bg-neutral-900 sm:w-56 sm:rounded-md">
+              {post.thumbnail && (
                 <Image
                   src={post.thumbnail}
-                  alt={post.title}
+                  alt=""
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover"
+                  sizes="(max-width: 639px) calc(100vw - 42px), 224px"
+                  className="object-cover transition-opacity group-hover:opacity-80"
                 />
-              </div>
-            ) : (
-              <div className="w-full aspect-video bg-neutral-100 dark:bg-neutral-800 shrink-0" />
-            )}
-            <div className="flex flex-col gap-2 p-4 tracking-tight">
-              <div className="text-sm font-medium text-neutral-500 dark:text-neutral-400 flex flex-wrap items-center gap-x-2 gap-y-1">
-                <span>{post.category ?? DEFAULT_CATEGORY}</span>
-                <span className="h-1 w-1 rounded-full bg-neutral-300 dark:bg-neutral-700" />
-                <span className="tabular-nums">
-                  {formatDateShort(post.date)}
-                </span>
-              </div>
-              <h2 className="text-base font-semibold text-neutral-700 dark:text-neutral-300 line-clamp-2">
+              )}
+            </div>
+            <div className="flex w-full min-w-0 flex-1 flex-col gap-3 p-4 tracking-tight sm:w-auto sm:p-0">
+              <h3 className="break-words text-lg font-semibold leading-snug text-neutral-900 transition-colors group-hover:text-neutral-500 dark:text-neutral-100 dark:group-hover:text-neutral-400 sm:text-xl">
                 {post.title}
-              </h2>
+              </h3>
               {post.description && (
-                <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed line-clamp-2">
+                <p className="line-clamp-2 break-words text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
                   {post.description}
                 </p>
               )}
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs sm:text-sm">
+                <span className="text-neutral-700 dark:text-neutral-300">
+                  {post.tags.length > 0
+                    ? post.tags.join(" · ")
+                    : post.category ?? DEFAULT_CATEGORY}
+                </span>
+                <time dateTime={post.date} className="whitespace-nowrap text-neutral-500 dark:text-neutral-400">
+                  {formatDateShort(post.date)}
+                </time>
+              </div>
             </div>
           </Link>
         </li>

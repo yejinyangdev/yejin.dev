@@ -76,7 +76,7 @@ export default function RootLayout({
   return (
     <html lang={DEFAULT_LANG} suppressHydrationWarning>
       <body
-        className={`${pretendard.variable} ${instrumentSerif.variable} antialiased flex flex-col min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100`}
+        className={`${pretendard.variable} ${instrumentSerif.variable} antialiased flex w-full min-w-0 flex-col min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100`}
       >
         <ThemeProvider
           attribute={THEME_ATTRIBUTE}
@@ -84,7 +84,7 @@ export default function RootLayout({
           enableSystem
         >
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="w-full min-w-0 flex-1">{children}</main>
           <Footer />
         </ThemeProvider>
         <Analytics />

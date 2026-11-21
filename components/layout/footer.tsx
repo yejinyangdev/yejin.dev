@@ -13,8 +13,8 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-neutral-200 dark:border-neutral-800 mt-auto">
-      <div className="max-w-5xl mx-auto px-6 sm:px-4 py-4">
+    <footer className="mt-auto w-full min-w-0 border-t border-neutral-200 dark:border-neutral-800">
+      <div className="mx-auto w-full min-w-0 max-w-7xl px-5 py-4 sm:px-8">
         <div className="flex sm:flex-row flex-col gap-2 items-center justify-between text-neutral-500 dark:text-neutral-400">
           <p className="text-sm tracking-tight">
             &copy; {currentYear} {AUTHOR_NAME}. {MESSAGES.FOOTER_RIGHTS}
