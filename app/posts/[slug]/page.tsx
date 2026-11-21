@@ -9,7 +9,6 @@ import {
 import type { Post } from "@/domain/post";
 import { formatDateShort } from "@/lib/utils";
 import { renderMarkdown } from "@/lib/mdx";
-import { MDXContent } from "@/components/mdx-content";
 import { PostNavigation } from "@/components/posts/post-navigation";
 import { PostToc } from "@/components/posts/post-toc";
 import { PostJsonLd } from "@/components/post-json-ld";
@@ -124,9 +123,7 @@ export default async function PostPage({
       <div className="relative max-w-2xl mx-auto px-4 sm:px-6 py-12">
         <PostToc items={toc} />
         <article className="prose-article">
-          <MDXContent>
-            <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
-          </MDXContent>
+          <div className="mdx-content" dangerouslySetInnerHTML={{ __html: htmlContent }} />
         </article>
         <PostNavigation prev={prev} next={next} />
       </div>

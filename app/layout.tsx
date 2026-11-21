@@ -13,6 +13,7 @@ import {
   THEME_ATTRIBUTE,
   THEME_DEFAULT,
 } from "@/constants";
+import "highlight.js/styles/github-dark.css";
 import "./globals.css";
 
 const pretendard = localFont({

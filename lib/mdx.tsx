@@ -91,7 +91,7 @@ export async function renderMarkdown(
         .use(rehypeRaw)
         .use(rehypeSlug)
         .use(rehypeCollectToc, { toc })
-        .use(rehypeHighlight)
+        .use(rehypeHighlight, { detect: true })
         .use(rehypeStringify)
         .process(source),
     );
